@@ -12,21 +12,21 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by Administrator on 2016/11/22.
  */
-@Controller
+//@Controller
 public class BaseController {
 
 
 
-    protected HttpServletRequest request;
-    protected HttpServletResponse response;
-    protected HttpSession httpSession;
-
-
-    @ModelAttribute
-    public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-        this.httpSession = request.getSession();
-    }
+//    protected HttpServletRequest request;
+//    protected HttpServletResponse response;
+//    protected HttpSession httpSession;
+//
+//
+//    @ModelAttribute
+//    public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {
+//        this.request = request;
+//        this.response = response;
+//        this.httpSession = request.getSession();
+//    }
 
 }

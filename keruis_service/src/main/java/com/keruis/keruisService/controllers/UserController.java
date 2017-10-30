@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Administrator on 2017/3/20.
  */
-@Controller
-@RequestMapping(value = "user")
-public class UserController extends BaseController {
-    @Autowired
-    UserServiceImp userServiceImp;
-
-    /**
-     * 登录验证
-     *
-     * @param user
-     * @return
-     */
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    @ResponseBody
-    public Object login(@RequestBody User user) {
-        L.w(user.toString());
-
-         return userServiceImp.Login(user);
-    }
+//@Controller
+//@RequestMapping(value = "user")
+ public class UserController extends BaseController {
+//    @Autowired
+//    UserServiceImp userServiceImp;
+//
+//    /**
+//     * 登录验证
+//     *
+//     * @param user
+//     * @return
+//     */
+//    @RequestMapping(value = "login", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Object login(@RequestBody User user) {
+//        L.w(user.toString());
+//
+//         return userServiceImp.Login(user);
+//    }
 
 
 

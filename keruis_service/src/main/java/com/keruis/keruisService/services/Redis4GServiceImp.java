@@ -20,7 +20,7 @@ public class Redis4GServiceImp implements Redis4GService {
         return redis4GDb0;
     }
 
-    private JedisPool jedisPool = getJedisPool();
+    private JedisPool jedisPool;
     public  static final String Qc6380host = "r-bp110824de3b91c4.redis.rds.aliyuncs.com";
     public static final String Qc6379host ="r-bp1ccc550a077d94.redis.rds.aliyuncs.com";
     public static final String Hb201Host ="redis.keruis.com";
@@ -28,14 +28,13 @@ public class Redis4GServiceImp implements Redis4GService {
     private final String pwd1="Keruis@123";
 
 
-    public JedisPool getJedisPool() {
+    public   Redis4GServiceImp() {
         JedisPoolConfig config = new JedisPoolConfig();
         //最大连接数, 应用自己评估，不要超过AliCloudDB for Redis每个实例最大的连接数
         config.setMaxIdle(150);
         config.setMinIdle(50);
         config.setMaxIdle(100);
-        JedisPool pool = new JedisPool(config, Hb201Host, 6379, Protocol.DEFAULT_TIMEOUT, pwd);
-        return pool;
+        jedisPool = new JedisPool(config, Hb201Host, 6379, Protocol.DEFAULT_TIMEOUT, pwd);
     }
 
 
