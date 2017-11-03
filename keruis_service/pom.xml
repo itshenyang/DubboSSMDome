@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>keruis_service</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <properties>
     </properties>
@@ -19,28 +19,74 @@
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
+    <!--<build>-->
+    <!--<finalName>keruis_service</finalName>-->
+    <!--<plugins>-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.tomcat.maven</groupId>-->
+    <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
+    <!--<version>2.2</version>-->
+    <!--<configuration>-->
+    <!--<uriEncoding>UTF-8</uriEncoding>-->
+    <!--<url>http://sh.keruis.com:8080/manager/text</url>-->
+    <!--<username>keruis</username>-->
+    <!--<password>Keruis@123</password>-->
+    <!--<path>/keruis_service</path>-->
+    <!--</configuration>-->
+    <!--</plugin>-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.maven.plugins</groupId>-->
+    <!--<artifactId>maven-compiler-plugin</artifactId>-->
+    <!--<version>3.6.0</version>-->
+    <!--<configuration>-->
+    <!--<source>1.7</source>-->
+    <!--<target>1.7</target>-->
+    <!--</configuration>-->
+    <!--</plugin>-->
+    <!--</plugins>-->
+    <!--</build>-->
     <build>
         <finalName>keruis_service</finalName>
         <plugins>
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.1</version>
                 <configuration>
-                    <uriEncoding>UTF-8</uriEncoding>
-                    <url>http://sh.keruis.com:8080/manager/text</url>
-                    <username>keruis</username>
-                    <password>Keruis@123</password>
-                    <path>/keruis_service</path>
+                    <finalName>keruis_service-1.0-sy-SNAPSHOT</finalName>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.keruis.keruisService.App</mainClass>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/spring.handlers</resource>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/spring.schemas</resource>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.5.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
